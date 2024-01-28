@@ -7,7 +7,7 @@ $route=Route::current()->getName();
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{{route('dashboard')}}" class="brand-link">
-        <img src="{{asset('dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+        <img src="{{asset('backend/dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">Dashboard</span>
     </a>
 
@@ -15,13 +15,13 @@ $route=Route::current()->getName();
     <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-{{--            <a href="{{route('admin.profile')}}">--}}
+            <a href="#">
             <div class="image">
-                <img src=" {{asset('dist/img/1212.jpeg')}}" class="img-circle elevation-2" alt="User Image" >
+                <img src=" {{asset('backend/dist/img/1212.jpeg')}}" class="img-circle elevation-2" alt="User Image" >
             </div>
             </a>
             <div class="info">
-{{--                <a href="{{route('admin.profile')}}" class="d-block">{{$admin->name}}</a>--}}
+                <a href="{{route('profile.edit')}}" class="d-block">{{ Auth::user()->name }}</a>
             </div>
 
 
@@ -52,10 +52,10 @@ $route=Route::current()->getName();
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-{{--                        <a href="{{route('admin.profile')}}" class="nav-link">--}}
-{{--                            <i class="fas fa-question nav-icon"></i>--}}
-{{--                            <p>Change password</p>--}}
-{{--                        </a>--}}
+                        <a href="{{route('profile.edit')}}" class="nav-link">
+                            <i class="fas fa-question nav-icon"></i>
+                            <p>Change password</p>
+                        </a>
 
                     </li>
 
@@ -67,7 +67,7 @@ $route=Route::current()->getName();
                         <p>
                             Deliveries
                             <i class="fas fa-angle-left right"></i>
-                                                        <span class="badge badge-info right">3</span>
+                           <span class="badge badge-info right">3</span>
                         </p>
                     </a>
 
@@ -78,7 +78,20 @@ $route=Route::current()->getName();
                         <p>
                            Bookings
                             <i class="fas fa-angle-left right"></i>
-                                                        <span class="badge badge-info right">6</span>
+                          <span class="badge badge-info right">6</span>
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('contact.message') }}" class="nav-link">
+                        <i class="nav-icon far fa-envelope"></i>
+                        <p>
+                            Messages
+                        @foreach(auth()->user()->notifications as $notification)
+                            <div>{{ $notification->data['message'] }}</div>
+                        @endforeach
+
+                        <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
                 </li>
@@ -92,16 +105,16 @@ $route=Route::current()->getName();
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            {{--                            <a href="{{route('all.images')}}" class="nav-link">--}}
-                            {{--                                <i class="far fa-circle nav-icon"></i>--}}
-                            {{--                                <p>All Images</p>--}}
-                            {{--                            </a>--}}
+                                                        <a href="{{route('all.images')}}" class="nav-link">
+                                                            <i class="far fa-circle nav-icon"></i>
+                                                            <p>All Images</p>
+                                                        </a>
                         </li>
                         <li class="nav-item">
-                            {{--                            <a href="{{route('images.upload')}}" class="nav-link">--}}
-                            {{--                                <i class="far fa-circle nav-icon"></i>--}}
-                            {{--                                <p>Upload images</p>--}}
-                            {{--                            </a>--}}
+                                                        <a href="{{route('images.upload')}}" class="nav-link">
+                                                            <i class="far fa-circle nav-icon"></i>
+                                                            <p>Upload images</p>
+                                                        </a>
                         </li>
 
 
@@ -172,3 +185,20 @@ Menu Category
     <!-- /.sidebar -->
 </aside>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    function refreshNotifications() {
+        $.get('{{ route('notifications.get') }}', function(data) {
+            // Update the notification count and handle other UI updates
+            // You may want to use a specific format for the response
+            // E.g., { count: 5, notifications: [...] }
+            $('.badge-warning').text(data.count);
+        });
+    }
+
+    // Refresh notifications every 60 seconds
+    setInterval(refreshNotifications, 60000);
+
+    // Initial call to load notifications on page load
+    refreshNotifications();
+</script>

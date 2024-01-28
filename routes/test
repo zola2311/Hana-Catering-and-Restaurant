@@ -1,0 +1,17 @@
+ Route::controller(DeliveryController::class)->group(function () {
+        Route::post('/store/delivery', 'Storedelivery')->name('store.delivery');
+        Route::get('/contact/delivery', 'Contactdelivery')->name('contact.delivery');
+        Route::get('/delete/delivery/{id}', 'Deletedelivery')->name('delete.delivery');
+        Route::get('/view/delivery/{id}', 'Viewdelivery')->name('view.delivery');
+
+
+    });
+
+ Route::controller(BookingController::class)->group(function () {
+        Route::post('/store/booking', 'Storebooking')->name('store.booking');
+        Route::get('/contact/booking', 'Contactbooking')->name('contact.booking');
+        Route::get('/delete/booking/{id}', 'Deletebooking')->name('delete.booking');
+        Route::get('/view/booking/{id}', 'Viewbooking')->name('view.booking');
+
+
+    });
