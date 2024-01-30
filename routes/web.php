@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\MenuCategoryController;
+use App\Http\Controllers\MenuController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -47,6 +50,29 @@ Route::middleware('auth')->group(function () {
         Route::get('/delete/image/{id}',  'DeleteImage')->name('delete.image');
         Route::post('/delete-images',  'deletemultipleimages')->name('delete.images');
     });
+
+
+    Route::prefix('categories')->group(function () {
+        Route::get('/', [CategoryController::class, 'index'])->name('categories.index');
+        Route::get('/create', [CategoryController::class, 'create'])->name('categories.create');
+        Route::post('/', [CategoryController::class, 'store'])->name('categories.store');
+        Route::get('/{id}', [CategoryController::class, 'show'])->name('categories.show');
+        Route::get('/edit/{id}', [CategoryController::class, 'edit'])->name('categories.edit');
+        Route::post('/update/fixture',  [CategoryController::class, 'UpdateCategory'])->name('update.category');
+        Route::get('/delete/category/{id}', [CategoryController::class, 'DeleteCategory'])->name('delete.category');
+        Route::delete('/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+    });
+
+    Route::prefix('menus')->group(function () {
+        Route::get('/', [MenuController::class, 'index'])->name('menus.index');
+        Route::get('/create', [MenuController::class, 'create'])->name('menus.create');
+        Route::post('/', [MenuController::class, 'store'])->name('menus.store');
+        Route::get('/edit/{id}', [MenuController::class, 'edit'])->name('menu.edit');
+        Route::post('/update/menu',  [MenuController::class, 'UpdateMenu'])->name('update.menu');
+        Route::get('/delete/menu/{id}', [MenuController::class, 'DeleteMenuItem'])->name('delete.menu');
+
+    });
+
 
 });
 Route::get('/notifications', 'NotificationController@getNotifications')->name('notifications.get');

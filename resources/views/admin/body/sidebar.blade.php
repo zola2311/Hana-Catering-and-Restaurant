@@ -135,7 +135,7 @@ Menu Category
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
 
-                            <a href="#" class="nav-link">
+                            <a href="{{route('categories.index')}}" class="nav-link">
 
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>All menu category</p>
@@ -143,7 +143,7 @@ Menu Category
                         </li>
                         <li class="nav-item">
 
-                            <a href="#" class="nav-link">
+                            <a href="{{route('categories.create')}}" class="nav-link">
 
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Add menu category</p>
@@ -161,13 +161,13 @@ Menu Category
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{route('menus.index')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>All menu items</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{route('menus.create')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Add menu item</p>
                             </a>
