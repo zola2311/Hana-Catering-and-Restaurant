@@ -76,5 +76,10 @@ Route::middleware('auth')->group(function () {
 
 });
 Route::get('/notifications', 'NotificationController@getNotifications')->name('notifications.get');
-
+Route::post('/booking', [App\Http\Controllers\BookingController::class,'booking'])->name('booking');
+Route::post('/delivery', [App\Http\Controllers\DeliveryController::class,'delivery'])->name('delivery');
+Route::get('/mark-as-read', [App\Http\Controllers\BookingController::class,'markAsBooking'])->name('mark-as-booking');
+Route::get('/mark-as-deliver', [App\Http\Controllers\DeliveryController::class,'markAsDeliver'])->name('mark-as-deliver');
+Route::get('/booking/list', [App\Http\Controllers\BookingController::class,'index'])->name('booking.list');
+Route::get('/delivery/list', [App\Http\Controllers\DeliveryController::class,'index'])->name('delivery.list');
 require __DIR__.'/auth.php';

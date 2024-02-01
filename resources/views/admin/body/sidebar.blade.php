@@ -62,23 +62,23 @@ $route=Route::current()->getName();
                 </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{route('delivery.list')}}" class="nav-link">
                         <i class="nav-icon far fa-envelope"></i>
                         <p>
                             Deliveries
                             <i class="fas fa-angle-left right"></i>
-                           <span class="badge badge-info right">3</span>
+                           <span class="badge badge-info right">{{auth()->user()->unreadNotifications->where('data.location', 'location2')->count()}}</span>
                         </p>
                     </a>
 
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{route('booking.list')}}" class="nav-link">
                         <i class="nav-icon far fa-envelope"></i>
                         <p>
                            Bookings
                             <i class="fas fa-angle-left right"></i>
-                          <span class="badge badge-info right">6</span>
+                          <span class="badge badge-info right">{{auth()->user()->unreadNotifications->where('data.location', 'location1')->count()}}</span>
                         </p>
                     </a>
                 </li>
@@ -87,9 +87,9 @@ $route=Route::current()->getName();
                         <i class="nav-icon far fa-envelope"></i>
                         <p>
                             Messages
-                        @foreach(auth()->user()->notifications as $notification)
+                        {{--@foreach(auth()->user()->notifications as $notification)
                             <div>{{ $notification->data['message'] }}</div>
-                        @endforeach
+                        @endforeach--}}
 
                         <i class="fas fa-angle-left right"></i>
                         </p>

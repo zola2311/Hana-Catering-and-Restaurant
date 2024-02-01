@@ -110,6 +110,40 @@
                         </div>
                     </form>
                 </div>
+                <div class="col-lg-6">
+                    <form method="post" action="{{ route('booking') }}" class="php">
+                        @csrf
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <input type="text" name="booking" class="form-control" id="name" placeholder="Your Name" required>
+                                @error('name')
+                                <span class="text-danger" role="alert">{{$message}}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <br>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-outline-danger" role="button">&nbsp;&nbsp;&nbsp;&nbsp;Send Message&nbsp;&nbsp;&nbsp;&nbsp;</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-lg-6">
+                    <form method="post" action="{{ route('delivery') }}" class="php">
+                        @csrf
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <input type="text" name="delivery" class="form-control" id="name" placeholder="Your Name" required>
+                                @error('name')
+                                <span class="text-danger" role="alert">{{$message}}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <br>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-outline-danger" role="button">&nbsp;&nbsp;&nbsp;&nbsp;Send Message&nbsp;&nbsp;&nbsp;&nbsp;</button>
+                        </div>
+                    </form>
+                </div>
             </div>
 
 

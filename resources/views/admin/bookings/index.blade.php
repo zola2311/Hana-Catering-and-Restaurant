@@ -37,7 +37,10 @@
 
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Messages from the website</h3>
+                                <h3 class="card-title">Booking Notifications</h3>
+                                @if (auth()->user()->unreadNotifications)
+                                <a href="{{route('mark-as-booking')}}" class="col-sm-4 btn-info">Mark Notifications As Read</a>
+                                @endif
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
@@ -45,30 +48,18 @@
                                     <thead>
                                     <tr>
                                         <th>Sl</th>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Phone</th>
-                                        <th>Date</th>
-                                        <th>Action</th>
+                                        <th>Notification</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     @php($i = 1)
-                                    @foreach($contacts as $item)
+                                    @foreach(auth()->user()->unreadNotifications->where('data.location', 'location1') as $notification)
                                     <tr>
                                         <td> {{ $i++}} </td>
-                                        <td> {{ $item->name }} </td>
-                                        <td> {{ $item->email }} </td>
-                                        <td> {{ $item->phone }} </td>
-                                        <td> {{ Carbon\Carbon::parse($item->created_at)->diffForHumans() }} </td>
-
-                                        <td>
-                                            <a href="{{ route('delete.message',$item->id) }}" class="btn btn-danger sm" title="Delete Data" id="delete">  <i class="fas fa-trash-alt"></i> </a>
-                                            <a href="{{ route('view.message',$item->id) }}" class="btn btn-info sm" title="view message">  <i class="fas fa-envelope-open"></i> </a>
-                                        </td>
-
+                                        <td>{{ $notification->data['data'] }}</td>
                                     </tr>
                                     @endforeach
+
 
 
                                     </tbody>
