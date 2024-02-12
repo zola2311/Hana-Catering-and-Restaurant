@@ -16,7 +16,36 @@ $route=Route::current()->getName();
 
         <!-- Right navbar links -->
         <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link" data-toggle="dropdown" href="#">
+                    <i class="far fa-bell"></i>
+                    <span class="badge badge-warning navbar-badge">{{auth()->user()->unreadNotifications->where('data.location', 'location2')->count() + auth()->user()->unreadNotifications->where('data.location', 'location1')->count()}}</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                    <span class="dropdown-item dropdown-header">{{auth()->user()->unreadNotifications->where('data.location', 'location2')->count() + auth()->user()->unreadNotifications->where('data.location', 'location1')->count()}} Notifications</span>
+                            <div class="dropdown-divider"></div>
+                    @php
+                        $timestamp = isset($BookingSuccessful->data['timestamp'])
+                            ? Carbon\Carbon::parse($BookingSuccessful->data['timestamp'])
+                            : Carbon\Carbon::now();
 
+                        $timestamp_2 = isset($DeliverySuccessful->data['timestamp'])
+                            ? Carbon\Carbon::parse($DeliverySuccessful->data['timestamp'])
+                            : Carbon\Carbon::now();
+                    @endphp
+                            <a href="#" class="dropdown-item">
+                                <i class="fas fa-user-check mr-2"></i>{{auth()->user()->unreadNotifications->where('data.location', 'location2')->count()}} new bookings
+                                <span class="float-right text-muted text-sm">{{$timestamp->diffForHumans()}}</span>
+                            </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-dolly mr-2"></i> {{auth()->user()->unreadNotifications->where('data.location', 'location1')->count()}} new deliveries
+                        <span class="float-right text-muted text-sm">{{$timestamp_2->diffForHumans()}}</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+                </div>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" data-widget="fullscreen" href="#" role="button">
                     <i class="fas fa-expand-arrows-alt"></i>

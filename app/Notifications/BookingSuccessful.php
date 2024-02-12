@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -48,9 +49,11 @@ class BookingSuccessful extends Notification
      */
     public function toArray($notifiable)
     {
+        $timestamp_1 = Carbon::now();
         return [
             'data' =>' Your booking  '. $this->booking.' was set successfully',
-            'location' => 'location1'
+            'location' => 'location1',
+            'timestamp' => $timestamp_1->toDateTimeString(),
         ];
     }
 }

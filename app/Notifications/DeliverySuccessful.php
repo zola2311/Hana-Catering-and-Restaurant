@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -48,9 +49,12 @@ class DeliverySuccessful extends Notification
      */
     public function toArray(object $notifiable): array
     {
+        $timestamp_2 = Carbon::now();
+
         return [
             'data' =>' Your sent '. $this->delivery.' was successful',
-            'location' => 'location2'
+            'location' => 'location2',
+            'timestamp' => $timestamp_2->toDateTimeString(),
         ];
     }
 }
