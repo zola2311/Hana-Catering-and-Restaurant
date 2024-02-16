@@ -17,7 +17,7 @@ class BookingController extends Controller
     }
 
     public function index(){
-        return view('admin.bookings.index');
+        return view('admin.notifications.notification');
     }
 
     public function booking(Request $request){

@@ -33,17 +33,17 @@ $route=Route::current()->getName();
                             ? Carbon\Carbon::parse($DeliverySuccessful->data['timestamp'])
                             : Carbon\Carbon::now();
                     @endphp
-                            <a href="#" class="dropdown-item">
+                            <a href="{{route('booking.list')}}" class="dropdown-item">
                                 <i class="fas fa-user-check mr-2"></i>{{auth()->user()->unreadNotifications->where('data.location', 'location2')->count()}} new bookings
                                 <span class="float-right text-muted text-sm">{{$timestamp->diffForHumans()}}</span>
                             </a>
                     <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item">
+                    <a href="{{route('delivery.list')}}" class="dropdown-item">
                         <i class="fas fa-dolly mr-2"></i> {{auth()->user()->unreadNotifications->where('data.location', 'location1')->count()}} new deliveries
                         <span class="float-right text-muted text-sm">{{$timestamp_2->diffForHumans()}}</span>
                     </a>
                     <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+                    <a href="{{route('booking.list')}}" class="dropdown-item dropdown-footer">See All Notifications</a>
                 </div>
             </li>
             <li class="nav-item">

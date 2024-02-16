@@ -16,11 +16,11 @@ class BookingSuccessful extends Notification
      * Create a new notification instance.
      */
     protected $booking;
-    public function __construct($booking)
+    public function __construct($booking,$timestamp_1)
     {
         $this->booking=$booking;
+        $this->timestamp_1 = $timestamp_1;
     }
-
     /**
      * Get the notification's delivery channels.
      *
@@ -53,7 +53,7 @@ class BookingSuccessful extends Notification
         return [
             'data' =>' Your booking  '. $this->booking.' was set successfully',
             'location' => 'location1',
-            'timestamp' => $timestamp_1->toDateTimeString(),
+            'timestamp' => $this->$timestamp_1->toDateTimeString(),
         ];
     }
 }

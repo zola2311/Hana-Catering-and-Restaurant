@@ -16,7 +16,7 @@ class DeliveryController extends Controller
     }
 
     public function index(){
-        return view('admin.deliveries.index');
+        return view('admin.notifications.notification');
     }
 
     public function delivery(Request $request){
