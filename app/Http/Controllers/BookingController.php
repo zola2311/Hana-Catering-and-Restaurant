@@ -20,6 +20,10 @@ class BookingController extends Controller
         return view('admin.notifications.notification');
     }
 
+    public function book(){
+        return view('admin.bookings.index');
+    }
+
     public function booking(Request $request){
         $booking = Booking::create([
             'user_id' =>Auth::user()->id,

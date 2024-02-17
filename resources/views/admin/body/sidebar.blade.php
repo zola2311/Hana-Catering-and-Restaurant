@@ -62,8 +62,9 @@ $route=Route::current()->getName();
                 </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('delivery.list')}}" class="nav-link">
-                        <i class="nav-icon far fa-envelope"></i>
+                    <a href="{{route('delivery.index')}}" class="nav-link">
+                        <!-- <i class="nav-icon far fa-utensils"></i> -->
+                        <i class="nav-icon fas fa-dolly mr-1"></i>
                         <p>
                             Deliveries
                             <i class="fas fa-angle-left right"></i>
@@ -73,8 +74,8 @@ $route=Route::current()->getName();
 
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('booking.list')}}" class="nav-link">
-                        <i class="nav-icon far fa-envelope"></i>
+                    <a href="{{route('booking.index')}}" class="nav-link">
+                        <i class="nav-icon fas fa-utensils"></i>
                         <p>
                            Bookings
                             <i class="fas fa-angle-left right"></i>

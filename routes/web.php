@@ -82,4 +82,6 @@ Route::get('/mark-as-read', [App\Http\Controllers\BookingController::class,'mark
 Route::get('/mark-as-deliver', [App\Http\Controllers\DeliveryController::class,'markAsDeliver'])->name('mark-as-deliver');
 Route::get('/booking/list', [App\Http\Controllers\BookingController::class,'index'])->name('booking.list');
 Route::get('/delivery/list', [App\Http\Controllers\DeliveryController::class,'index'])->name('delivery.list');
+Route::get('/booking/index', [App\Http\Controllers\BookingController::class,'book'])->name('booking.index');
+Route::get('/delivery/index', [App\Http\Controllers\DeliveryController::class,'deliver'])->name('delivery.index');
 require __DIR__.'/auth.php';

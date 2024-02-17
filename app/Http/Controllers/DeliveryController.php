@@ -19,6 +19,10 @@ class DeliveryController extends Controller
         return view('admin.notifications.notification');
     }
 
+    public function deliver(){
+        return view('admin.deliveries.index');
+    }
+
     public function delivery(Request $request){
         $delivery = Delivery::create([
             'user_id' =>Auth::user()->id,

@@ -52,7 +52,7 @@
                                     </nav>
                                     <div class="tab-content p-3" id="nav-tabContent">
                                         <div class="tab-pane fade show active" id="product-desc" role="tabpanel" aria-labelledby="product-desc-tab">
-                                                <table id="example" class="table table-bordered table-striped">
+                                                <table id="example1" class="table table-bordered table-striped">
                                                     <thead class="table-dark">
                                                     <tr>
                                                         <th>Sl</th>

@@ -49,12 +49,10 @@ class DeliverySuccessful extends Notification
      */
     public function toArray(object $notifiable): array
     {
-        $timestamp_2 = Carbon::now();
 
         return [
             'data' =>' Your sent '. $this->delivery.' was successful',
             'location' => 'location2',
-            'timestamp' => $timestamp_2->toDateTimeString(),
         ];
     }
 }
