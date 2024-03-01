@@ -33,17 +33,17 @@ $route=Route::current()->getName();
                             ? Carbon\Carbon::parse($DeliverySuccessful->data['timestamp'])
                             : Carbon\Carbon::now();
                     @endphp
-                    <a href="{{route('booking.list')}}" class="dropdown-item">
+                    <a href="{{route('book_notifications.get')}}" class="dropdown-item">
                         <i class="fas fa-utensils mr-2"></i> New bookings
-                        <span class="float-right text-muted text-sm">{{auth()->user()->unreadNotifications->where('data.location', 'location2')->count()}}</span>
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a href="{{route('delivery.list')}}" class="dropdown-item">
-                        <i class="fas fa-dolly mr-1"></i> New deliveries
                         <span class="float-right text-muted text-sm">{{auth()->user()->unreadNotifications->where('data.location', 'location1')->count()}}</span>
                     </a>
                     <div class="dropdown-divider"></div>
-                    <a href="{{route('booking.list')}}" class="dropdown-item dropdown-footer">See All Notifications</a>
+                    <a href="{{route('delivery_notification.get')}}" class="dropdown-item">
+                        <i class="fas fa-dolly mr-1"></i> New deliveries
+                        <span class="float-right text-muted text-sm">{{auth()->user()->unreadNotifications->where('data.location', 'location2')->count()}}</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="{{route('book_notifications.get')}}" class="dropdown-item dropdown-footer">See All Notifications</a>
                 </div>
             </li>
             <li class="nav-item">

@@ -13,7 +13,13 @@ return new class extends Migration
     {
         Schema::create('deliveries', function (Blueprint $table) {
             $table->id();
-            $table->string('delivery');
+            $table->string('name');
+            $table->string('email');
+            $table->string('phone');
+            $table->string('order');
+            $table->integer('quantity');
+            $table->text('description')->nullable();
+            $table->boolean('status')->default(false);
             $table->foreignId('user_id')->references('id')->on('users')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });

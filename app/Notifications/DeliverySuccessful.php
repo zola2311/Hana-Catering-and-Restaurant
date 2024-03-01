@@ -51,7 +51,7 @@ class DeliverySuccessful extends Notification
     {
 
         return [
-            'data' =>' Your sent '. $this->delivery.' was successful',
+            'data' =>' There is a new '. $this->delivery.' order.',
             'location' => 'location2',
         ];
     }

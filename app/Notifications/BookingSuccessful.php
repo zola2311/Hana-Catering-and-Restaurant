@@ -48,9 +48,8 @@ class BookingSuccessful extends Notification
      */
     public function toArray($notifiable)
     {
-        $timestamp_1 = Carbon::now();
         return [
-            'data' =>' Your booking  '. $this->booking.' was set successfully',
+            'data' =>' There is new booking on '. $this->booking,
             'location' => 'location1',
         ];
     }

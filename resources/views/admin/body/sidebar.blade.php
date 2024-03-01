@@ -62,7 +62,7 @@ $route=Route::current()->getName();
                 </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('delivery.index')}}" class="nav-link">
+                    <a href="#" class="nav-link">
                         <!-- <i class="nav-icon far fa-utensils"></i> -->
                         <i class="nav-icon fas fa-dolly mr-1"></i>
                         <p>
@@ -71,10 +71,25 @@ $route=Route::current()->getName();
                            <span class="badge badge-info right">{{auth()->user()->unreadNotifications->where('data.location', 'location2')->count()}}</span>
                         </p>
                     </a>
-
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{route('delivery.index')}}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>All Deliveries</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('delivery_notification.get')}}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Notifications</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('booking.index')}}" class="nav-link">
+                    @if (auth()->user()->unreadNotifications)
+                    <a href="#"   class="nav-link">
+                    @endif
                         <i class="nav-icon fas fa-utensils"></i>
                         <p>
                            Bookings
@@ -82,6 +97,20 @@ $route=Route::current()->getName();
                           <span class="badge badge-info right">{{auth()->user()->unreadNotifications->where('data.location', 'location1')->count()}}</span>
                         </p>
                     </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="#" onclick="redirect()"  class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>All Bookings</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('book_notifications.get')}}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Notifications</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('contact.message') }}" class="nav-link">
@@ -203,3 +232,26 @@ Menu Category
     // Initial call to load notifications on page load
     refreshNotifications();
 </script>
+{{--<script>
+    function openLinks() {
+        var firstLink = "{{ route('booking.index') }}";
+        var secondLink = "{{ route('mark-as-booking') }}";
+
+        window.open(firstLink, '_blank');
+        window.open(secondLink, '_blank');
+    }
+</script>--}}
+
+<script>
+    function redirect() {
+        // Redirect to the first URL using window.location.replace
+        window.location.replace('{{route('booking.index')}}');
+
+        // After a delay (in this example, 2000 milliseconds or 2 seconds), redirect to the second URL
+        setTimeout(function() {
+            // Use window.location.assign for the second redirection
+            window.location.assign('{{route('mark-as-booking')}}');
+        }, 2000); // Adjust the delay as needed (in milliseconds)
+    }
+</script>
+

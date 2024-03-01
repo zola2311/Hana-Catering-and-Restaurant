@@ -13,7 +13,14 @@ return new class extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
-            $table->string('booking');
+            $table->string('name');
+            $table->string('email');
+            $table->string('phone');
+            $table->date('reservation_date');
+            $table->time('reservation_time');
+            $table->integer('number_of_people');
+            $table->text('message')->nullable();
+            $table->boolean('status')->default(false);
             $table->foreignId('user_id')->references('id')->on('users')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });

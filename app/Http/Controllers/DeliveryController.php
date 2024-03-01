@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Booking;
 use App\Models\Delivery;
 use App\Models\User;
 use App\Notifications\DeliverySuccessful;
@@ -16,23 +17,36 @@ class DeliveryController extends Controller
     }
 
     public function index(){
-        return view('admin.notifications.notification');
+        return view('admin.deliveries.delivery_notification');
     }
 
     public function deliver(){
-        return view('admin.deliveries.index');
+        $deliver = Delivery::all()->sortByDesc('id');
+        return view('admin.deliveries.index',compact('deliver'));
     }
 
     public function delivery(Request $request){
         $delivery = Delivery::create([
             'user_id' =>Auth::user()->id,
-            'delivery'  => $request->delivery
+            'name'  => $request->name,
+            'email'  => $request->email,
+            'phone'  => $request->phone,
+            'order'  => $request->order,
+            'quantity'  => $request->quantity,
+            'description'  => $request->description,
         ]);
-        User::find(Auth::user()->id)->notify(new DeliverySuccessful($delivery->delivery));
+        User::find(Auth::user()->id)->notify(new DeliverySuccessful($delivery->order));
 
         return redirect()->back()->with('status','Your deposit was successful!');
     }
+    public function status(Request $request){
 
+        $deliver = Delivery::find($request->id);
+        $deliver->status = $request->has('status');
+        $deliver->save();
+
+        return redirect()->back()->with('status','Done!');
+    }
     public function markAsDeliver(){
         Auth::user()->unreadNotifications->where('data.location', 'location2')->markAsRead();
         return redirect()->back();

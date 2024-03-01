@@ -3,13 +3,76 @@
 @section('main')
 
     @section('title')
-        Kagnew | message
+        Hana | All Bookings
     @endsection
 
     @php
         $route = Route::current()->getName();
     @endphp
+<style>
+    /* The switch - the box around the slider */
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 50px;
+        height: 25px;
+    }
 
+    /* Hide default HTML checkbox */
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    /* The slider */
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: cadetblue;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 19px;
+        width: 19px;
+        left: 3px;
+        bottom: 3px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+    input:checked + .slider {
+        background-color: #075879;
+    }
+
+    input:focus + .slider {
+        box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked + .slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+        border-radius: 34px;
+    }
+
+    .slider.round:before {
+        border-radius: 50%;
+    }
+</style>
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -17,11 +80,11 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>All Messages</h1>
+                        <h1>All Bookings</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item active">Messages</li>
+                            <li class="breadcrumb-item active">Bookings</li>
                         </ol>
                     </div>
                 </div>
@@ -36,31 +99,46 @@
 
 
                         <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Booking Notifications</h3>
-                                @if (auth()->user()->unreadNotifications)
-                                <a href="{{route('mark-as-booking')}}" class="col-sm-4 btn-info">Mark Notifications As Read</a>
-                                @endif
-                            </div>
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                     <tr>
                                         <th>Sl</th>
-                                        <th>Notification</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Phone Number</th>
+                                        <th>Date</th>
+                                        <th>Time</th>
+                                        <th># Guests</th>
+                                        <th>Description</th>
+                                        <th>Status</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     @php($i = 1)
-                                    @foreach(auth()->user()->unreadNotifications->where('data.location', 'location1') as $notification)
-                                    <tr>
-                                        <td> {{ $i++}} </td>
-                                        <td>{{ $notification->data['data'] }}</td>
-                                    </tr>
+                                    @foreach($bookings as $item)
+                                        <tr>
+                                            <td> {{ $i++ }} </td>
+                                            <td>{{ $item->name }}</td>
+                                            <td>{{ $item->email }}</td>
+                                            <td>{{ $item->phone }}</td>
+                                            <td>{{ $item->reservation_date }}</td>
+                                            <td>{{ $item->reservation_time }}</td>
+                                            <td>{{ $item->number_of_people }}</td>
+                                            <td>{{ $item->message }}</td>
+                                            <td>
+                                                <form action="{{ route('booking_status') }}" method="post">
+                                                    @csrf
+                                                    <input type="hidden" name="id" value="{{ $item->id }}">
+                                                            <label class="switch" for="customSwitch{{ $item->id }}">
+                                                            <input type="checkbox" name="status" id="customSwitch{{ $item->id }}" {{ $item->status ? 'checked' : '' }} value="1" onchange="this.form.submit()">
+                                                            <span class="slider round"></span>
+                                                            </label>
+                                                </form>
+                                            </td>
+                                        </tr>
                                     @endforeach
-
-
 
                                     </tbody>
                                     <tfoot>
@@ -82,3 +160,7 @@
     </div>
 
 @endsection
+
+
+
+

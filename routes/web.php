@@ -76,11 +76,14 @@ Route::middleware('auth')->group(function () {
 
 });
 Route::get('/notifications', 'NotificationController@getNotifications')->name('notifications.get');
+Route::get('/booking_notification', [App\Http\Controllers\BookingController::class,'index'])->name('book_notifications.get');
+Route::get('/delivery_notification', [App\Http\Controllers\DeliveryController::class,'index'])->name('delivery_notification.get');
 Route::post('/booking', [App\Http\Controllers\BookingController::class,'booking'])->name('booking');
+Route::post('/booking_update', [App\Http\Controllers\BookingController::class,'status'])->name('booking_status');
+Route::post('/delivery_update', [App\Http\Controllers\DeliveryController::class,'status'])->name('deliver_status');
 Route::post('/delivery', [App\Http\Controllers\DeliveryController::class,'delivery'])->name('delivery');
 Route::get('/mark-as-read', [App\Http\Controllers\BookingController::class,'markAsBooking'])->name('mark-as-booking');
 Route::get('/mark-as-deliver', [App\Http\Controllers\DeliveryController::class,'markAsDeliver'])->name('mark-as-deliver');
-Route::get('/booking/list', [App\Http\Controllers\BookingController::class,'index'])->name('booking.list');
 Route::get('/delivery/list', [App\Http\Controllers\DeliveryController::class,'index'])->name('delivery.list');
 Route::get('/booking/index', [App\Http\Controllers\BookingController::class,'book'])->name('booking.index');
 Route::get('/delivery/index', [App\Http\Controllers\DeliveryController::class,'deliver'])->name('delivery.index');

@@ -128,7 +128,7 @@
                     </form>
                 </div>
                 <div class="col-lg-6">
-                    <form method="post" action="{{ route('delivery') }}" class="php">
+                    <form method="post" action="" class="php">
                         @csrf
                         <div class="row">
                             <div class="col-md-6 form-group">
@@ -159,7 +159,8 @@
 <!--          <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>-->
         </div>
 
-        <form action="forms/book-a-table.php" method="post" role="form" class="php-email-form">
+        <form method="post" action="{{ route('booking') }}" class="php">
+            @csrf
           <div class="row">
             <div class="col-lg-4 col-md-6 form-group">
               <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
@@ -174,11 +175,11 @@
               <div class="validate"></div>
             </div>
             <div class="col-lg-4 col-md-6 form-group mt-3">
-              <input type="text" name="date" class="form-control" id="date" placeholder="Date" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+              <input type="date" name="date" class="form-control" id="date" placeholder="Date" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
               <div class="validate"></div>
             </div>
             <div class="col-lg-4 col-md-6 form-group mt-3">
-              <input type="text" class="form-control" name="time" id="time" placeholder="Time" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+              <input type="time" class="form-control" name="time" id="time" placeholder="Time" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
               <div class="validate"></div>
             </div>
             <div class="col-lg-4 col-md-6 form-group mt-3">
@@ -205,7 +206,8 @@
 <!--              <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>-->
             </div>
 
-            <form action="forms/book-a-table.php" method="post" role="form" class="php-email-form">
+            <form action="{{ route('delivery') }}" method="post" class="php">
+                @csrf
               <div class="row">
                 <div class="col-lg-4 col-md-6 form-group">
                   <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
@@ -221,20 +223,19 @@
                 </div>
 
                 <div class="col-lg-4 col-md-6 form-group mt-3">
-                  <input type="number" class="form-control" name="people" id="people" placeholder="# of quantity" data-rule="minlen:1" data-msg="Please enter at least 1 chars">
+                  <input type="text" class="form-control" name="order" id="order" placeholder="write you order" data-rule="minlen:1" data-msg="Please enter at least 1 chars">
                   <div class="validate"></div>
                 </div>
+                  <div class="col-lg-4 col-md-6 form-group mt-3">
+                      <input type="number" class="form-control" name="quantity" id="quantity" placeholder="# of quantity" data-rule="minlen:1" data-msg="Please enter at least 1 chars">
+                      <div class="validate"></div>
+                  </div>
               </div>
               <div class="form-group mt-3">
-                <textarea class="form-control" name="message" rows="5" placeholder="Details of your Order"></textarea>
+                <textarea class="form-control" name="description" rows="5" placeholder="Details of your Order"></textarea>
                 <div class="validate"></div>
               </div>
-              <div class="mb-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your booking request was sent. We will call back or send an Email to confirm your reservation. Thank you!</div>
-              </div>
-              <div class="text-center"><button type="submit">Order</button></div>
+              <div class="text-center"><button type="submit">Send Order</button></div>
             </form>
           </div>
         </div>
