@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('frontend.contact');
+    return view('frontend.service');
 });
 
 Route::get('/dashboard', function () {

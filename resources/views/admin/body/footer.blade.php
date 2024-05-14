@@ -1,5 +1,5 @@
 <footer class="main-footer">
-    <strong> &copy; <span id="current-year"></span> <a href="https://kagnewfc.com">Kagnew FC</a>.</strong>
+    <strong> &copy; <span id="current-year"></span> <a href="https://kagnewfc.com">Hana Catering and Restaurant</a>.</strong>
     <div class="float-right d-none d-sm-inline-block">
         <strong>Crafted by <a href="https://happycreatives.net/" target="_blank" rel="noopener noreferrer">HappyCreatives</a>.</strong>
     </div>

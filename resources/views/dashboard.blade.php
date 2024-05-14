@@ -36,7 +36,7 @@
                         <div class="small-box bg-info">
                             <div class="inner">
 {{--                                <h3>{{$shop}}</h3>--}}
-                                <p>Shop Items</p>
+                                <p>messages</p>
                             </div>
                             <div class="icon">
                                 <i class="ion ion-bag"></i>
@@ -51,7 +51,7 @@
                             <div class="inner">
 {{--                                <h3>{{ $story}}</h3>--}}
 
-                                <p>Top Stories</p>
+                                <p>Gallery</p>
                             </div>
                             <div class="icon">
                                 <i class="ion ion-stats-bars"></i>
@@ -66,7 +66,7 @@
                             <div class="inner">
 {{--                                <h3>{{$users}}</h3>--}}
 
-                                <p>Members</p>
+                                <p>Menu</p>
                             </div>
                             <div class="icon">
                                 <i class="ion ion-person-add"></i>
@@ -80,7 +80,7 @@
                         <div class="small-box bg-danger">
                             <div class="inner">
 {{--                                <h3>{{$player}}</h3>--}}
-                                <p>Players</p>
+                                <p>Menu Categories</p>
                             </div>
                             <div class="icon">
                                 <i class="ion ion-pie-graph"></i>
